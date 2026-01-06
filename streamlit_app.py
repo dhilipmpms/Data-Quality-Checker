@@ -2,14 +2,13 @@ import streamlit as st
 import pandas as pd
 import requests
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Must be the first Streamlit command
 st.set_page_config(page_title="Data Quality Checker", layout="wide")
 
-load_dotenv()
+# sload_dotenv()
 
-# API_KEY = st.secrets["api"]["OPEN_ROUTER_API_KEY"]
 API_KEY = st.text_input("🔑 Enter your OpenRouter API Key", type="password")
 
 st.title("📊 Data Quality Checker using LLM 🚀")
@@ -58,7 +57,9 @@ Data Types:
 """
 
 if st.button("🧠 Summarize with LLM"):
-    if report.strip() == "":
+    if not API_KEY or API_KEY.strip() == "":
+        st.error("⚠️ Please enter your OpenRouter API Key above to use the LLM summarization feature.")
+    elif report.strip() == "":
         st.error("⚠️ Report is empty. Please upload a proper CSV file.")
     else:
         with st.spinner("Generating summary with LLM..."):
