@@ -13,7 +13,7 @@ API_KEY = st.text_input("🔑 Enter your OpenRouter API Key", type="password")
 
 st.title("📊 Data Quality Checker using LLM 🚀")
 
-uploaded_file = st.file_uploader("📤 Upload your CSV file", type=["csv"])
+uploaded_file = st.file_uploader("📤 Upload your CSV file", type=["csv", "xlsx"])
 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
